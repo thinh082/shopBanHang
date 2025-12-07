@@ -1,0 +1,6 @@
+@shopBanHang_HostAddress = http://localhost:5141
+
+GET {{shopBanHang_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
