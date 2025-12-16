@@ -63,7 +63,7 @@ public class TinNhanController : ControllerBase
 
     // Xem lịch sử tin nhắn (tin nhắn đã gửi và nhận)
     [HttpGet("lich-su")]
-    public IActionResult GetLichSuTinNhan([FromQuery] int taiKhoanId, [FromQuery] int? nguoiNhanId = null)
+    public IActionResult GetLichSuTinNhan([FromQuery] int taiKhoanId, [FromQuery] int nguoiNhanId = 5)
     {
         try
         {
@@ -71,11 +71,9 @@ public class TinNhanController : ControllerBase
                 .Where(tn => tn.NguoiGuiId == taiKhoanId || tn.NguoiNhanId == taiKhoanId);
 
             // Nếu có nguoiNhanId, chỉ lấy tin nhắn giữa 2 người
-            if (nguoiNhanId.HasValue)
+            if (nguoiNhanId != 0)
             {
-                query = query.Where(tn => 
-                    (tn.NguoiGuiId == taiKhoanId && tn.NguoiNhanId == nguoiNhanId.Value) ||
-                    (tn.NguoiGuiId == nguoiNhanId.Value && tn.NguoiNhanId == taiKhoanId));
+                query = query.Where(tn => tn.NguoiGuiId == taiKhoanId && tn.NguoiNhanId == nguoiNhanId );       
             }
 
             var tinNhans = query

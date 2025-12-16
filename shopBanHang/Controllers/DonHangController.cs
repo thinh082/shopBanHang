@@ -445,6 +445,16 @@ public class DonHangController : ControllerBase
                         TenSanPham = ct.SanPham != null ? ct.SanPham.TenSanPham : "",
                         SoLuong = ct.SoLuong,
                         DonGia = ct.DonGia ?? 0
+                    }).ToList(),
+                    ThanhToans = dh.ThanhToans.Select(tt => new ThanhToanDonHangDTO
+                    {
+                        Id = tt.Id,
+                        PhuongThuc = tt.PhuongThuc,
+                        SoTien = tt.SoTien,
+                        TrangThai = tt.TrangThai,
+                        NgayThanhToan = tt.NgayThanhToan,
+                        MaGiaoDich = tt.MaGiaoDich,
+                        CongThanhToan = tt.CongThanhToan
                     }).ToList()
                 })
                 .FirstOrDefault();
